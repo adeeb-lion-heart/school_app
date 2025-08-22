@@ -1,0 +1,22 @@
+<!-- templates/teachers/delete_teacher.html -->
+{% extends "base.html" %}
+
+{% block title %}حذف المعلم{% endblock %}
+
+{% block content %}
+<div class="card shadow-sm border-danger">
+    <div class="card-header bg-danger text-white">
+        <h2 class="mb-0"><i class="fas fa-exclamation-triangle me-2"></i> تأكيد الحذف</h2>
+    </div>
+    <div class="card-body">
+        <p class="lead text-center">هل أنت متأكد أنك تريد حذف المعلم: <strong>{{ teacher.f_name }} {{ teacher.l_name }}</strong>؟</p>
+        <p class="text-center text-danger">سيتم حذف كافة بيانات هذا المعلم بشكل دائم ولا يمكن التراجع عن هذا الإجراء.</p>
+        <form method="post" class="text-center mt-4">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-danger btn-lg me-3"><i class="fas fa-trash-alt me-1"></i> نعم، احذف المعلم</button>
+            <a href="{% url 'teacher_detail' teacher.pk %}" class="btn btn-secondary btn-lg me-3"><i class="fas fa-times-circle me-1"></i> إلغاء</a>
+            <a href="{% url 'teacher_list' %}" class="btn btn-outline-secondary btn-lg"><i class="fas fa-arrow-left me-1"></i> العودة إلى القائمة</a>
+        </form>
+    </div>
+</div>
+{% endblock %}

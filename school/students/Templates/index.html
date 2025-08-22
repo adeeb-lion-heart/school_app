@@ -1,0 +1,16 @@
+<!-- templates/students/index.html -->
+{% extends "base.html" %}
+
+{% block title %}الصفحة الرئيسية{% endblock %}
+
+{% block content %}
+<div class="jumbotron bg-light p-5 rounded">
+    <h2 class="display-4 text-center">أهلاً بك في نظام إدارة الطلاب!</h2>
+    <p class="lead text-center">استخدم الروابط في شريط التنقل أعلاه لإدارة بيانات الطلاب.</p>
+    <hr class="my-4">
+    <p class="text-center">
+        <a class="btn btn-primary btn-lg me-2" href="{% url 'add' %}" role="button"><i class="fas fa-plus-circle me-1"></i> إضافة طالب جديد</a>
+        <a class="btn btn-secondary btn-lg" href="{% url 'showll' %}" role="button"><i class="fas fa-users me-1"></i> عرض قائمة الطلاب</a>
+    </p>
+</div>
+{% endblock %}

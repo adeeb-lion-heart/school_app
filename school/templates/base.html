@@ -1,0 +1,79 @@
+<!-- templates/base.html -->
+{% load static %}
+<!DOCTYPE html>
+<html lang="ar" dir="rtl"> {# Added dir="rtl" for right-to-left language support #}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}نظام إدارة الطلاب والمعلمين{% endblock %}</title> {# تحديث العنوان #}
+    
+    <!-- Bootstrap CSS from static files -->
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="{% static 'css/all.css' %}">
+
+    <!-- Custom CSS (يمكنك إضافة ملف CSS مخصص هنا إذا كنت بحاجة إلى تجاوز أنماط Bootstrap أو إضافة أنماط فريدة) -->
+    <!-- <link rel="stylesheet" href="{% static 'css/custom.css' %}"> -->
+</head>
+<body>
+
+    <header class="bg-primary text-white text-center py-3">
+        <h1>مرحباً بك في نظام إدارة الطلاب والمعلمين</h1> {# تحديث العنوان #}
+    </header>
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+            <a class="navbar-brand" href="{% url 'index' %}">
+                <img src="{% static 'images/ad.jpg' %}" alt="Logo" width="50" height="50" class="rounded-circle me-2">
+                نظام الإدارة
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto"> {# ms-auto to push links to the right in RTL #}
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownStudents" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="fas fa-user-graduate me-1"></i> الطلاب
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDropdownStudents">
+                            <li><a class="dropdown-item" href="{% url 'add' %}">إضافة طالب جديد</a></li>
+                            <li><a class="dropdown-item" href="{% url 'showll' %}">عرض الطلاب</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="{% url 'showll' %}">تعديل/حذف الطلاب</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownTeachers" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="fas fa-chalkboard-teacher me-1"></i> المعلمون
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDropdownTeachers">
+                            <li><a class="dropdown-item" href="{% url 'add_teacher' %}">إضافة معلم جديد</a></li>
+                            <li><a class="dropdown-item" href="{% url 'teacher_list' %}">عرض المعلمين</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="{% url 'teacher_list' %}">تعديل/حذف المعلمين</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'index' %}">الرئيسية</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container mt-4">
+        {% block content %}
+        <!-- المحتوى المتغير لكل صفحة سيظهر هنا -->
+        {% endblock %}
+    </main>
+
+    <footer class="bg-light text-center py-3 mt-4">
+        &copy; {% now "Y" %} جميع الحقوق محفوظة - adeeb_engineer
+    </footer>
+
+    <!-- Bootstrap Bundle with Popper from static files -->
+    <script src="{% static 'css/bootstrap.bundle.min.js' %}"></script>
+</body>
+</html>

@@ -1,0 +1,68 @@
+<!-- templates/students/create_student.html -->
+{% extends "base.html" %}
+
+{% block title %}إضافة طالب جديد{% endblock %}
+
+{% block content %}
+<div class="card shadow-sm">
+    <div class="card-header bg-primary text-white">
+        <h2 class="mb-0">إضافة طالب جديد</h2>
+    </div>
+    <div class="card-body">
+        <form method="post">
+            {% csrf_token %}
+            <div class="mb-3">
+                <label for="f_name" class="form-label">الاسم الأول:</label>
+                <input type="text" class="form-control" id="f_name" name="f_name" required>
+            </div>
+
+            <div class="mb-3">
+                <label for="l_name" class="form-label">اسم العائلة:</label>
+                <input type="text" class="form-control" id="l_name" name="l_name" required>
+            </div>
+
+            <div class="mb-3">
+                <label for="age" class="form-label">العمر:</label>
+                <input type="number" class="form-control" id="age" name="age" required>
+            </div>
+
+            <div class="mb-3">
+                <label for="gpa" class="form-label">المعدل:</label>
+                <input type="number" class="form-control" id="gpa" name="gpa" step="0.01" required>
+            </div>
+
+            <!-- <div class="mb-3">
+                <label for="level" class="form-label">المستوى الجامعي:</label>
+                <input type="text" class="form-control" id="level" name="level" required>
+            </div> -->
+
+<div class="mb-3">
+    <label for="level" class="form-label">المستوى الجامعي:</label>
+    <select class="form-select" id="level" name="level" required>
+        <option value="">اختر المستوى</option> {# اختيار اختياري افتراضي #}
+        <option value="1">المستوى الأول</option>
+        <option value="2">المستوى الثاني</option>
+        <option value="3">المستوى الثالث</option>
+        <option value="4">المستوى الرابع</option>
+    </select>
+</div>
+
+            <div class="mb-3">
+                <label for="status" class="form-label">الحالة:</label>
+                <select class="form-select" id="status" name="status">
+                    <option value="True">نشط</option>
+                    <option value="False">غير نشط</option>
+                </select>
+            </div>
+
+            <div class="mb-3">
+                <label for="report" class="form-label">تقرير:</label>
+                <textarea class="form-control" id="report" name="report" rows="3"></textarea>
+            </div>
+
+            <button type="submit" class="btn btn-success"><i class="fas fa-plus me-1"></i> إضافة الطالب</button>
+            <a href="{% url 'showll' %}" class="btn btn-secondary ms-2"><i class="fas fa-arrow-left me-1"></i> العودة إلى القائمة</a>
+        </form>
+    </div>
+</div>
+{% endblock %}

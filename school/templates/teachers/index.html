@@ -1,0 +1,16 @@
+<!-- templates/teachers/index.html -->
+{% extends "base.html" %}
+
+{% block title %}الصفحة الرئيسية للمعلمين{% endblock %}
+
+{% block content %}
+<div class="jumbotron bg-light p-5 rounded">
+    <h2 class="display-4 text-center">أهلاً بك في قسم إدارة المعلمين!</h2>
+    <p class="lead text-center">يمكنك إدارة بيانات المعلمين هنا.</p>
+    <hr class="my-4">
+    <p class="text-center">
+        <a class="btn btn-primary btn-lg me-2" href="{% url 'add_teacher' %}" role="button"><i class="fas fa-user-plus me-1"></i> إضافة معلم جديد</a>
+        <a class="btn btn-secondary btn-lg" href="{% url 'teacher_list' %}" role="button"><i class="fas fa-users me-1"></i> عرض قائمة المعلمين</a>
+    </p>
+</div>
+{% endblock %}

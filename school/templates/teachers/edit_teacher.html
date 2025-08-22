@@ -1,0 +1,42 @@
+<!-- templates/teachers/edit_teacher.html -->
+{% extends "base.html" %}
+
+{% block title %}تعديل المعلم{% endblock %}
+
+{% block content %}
+<div class="card shadow-sm">
+    <div class="card-header bg-primary text-white">
+        <h2 class="mb-0">تعديل المعلم: {{ teacher.f_name }} {{ teacher.l_name }}</h2>
+    </div>
+    <div class="card-body">
+        <form method="post">
+            {% csrf_token %}
+            
+            {% for field in form %}
+                <div class="mb-3">
+                    <label for="{{ field.id_for_label }}" class="form-label">{{ field.label }}:</label>
+                    {{ field }}
+                    {% if field.help_text %}
+                        <div class="form-text">{{ field.help_text }}</div>
+                    {% endif %}
+                    {% for error in field.errors %}
+                        <div class="alert alert-danger mt-1">{{ error }}</div>
+                    {% endfor %}
+                </div>
+            {% endfor %}
+
+            {% if form.non_field_errors %}
+                <div class="alert alert-danger">
+                    {% for error in form.non_field_errors %}
+                        {{ error }}
+                    {% endfor %}
+                </div>
+            {% endif %}
+
+            <button type="submit" class="btn btn-success"><i class="fas fa-save me-1"></i> حفظ التعديلات</button>
+            <a href="{% url 'teacher_detail' teacher.pk %}" class="btn btn-info ms-2"><i class="fas fa-info-circle me-1"></i> عرض التفاصيل</a>
+            <a href="{% url 'teacher_list' %}" class="btn btn-secondary ms-2"><i class="fas fa-arrow-left me-1"></i> العودة إلى القائمة</a>
+        </form>
+    </div>
+</div>
+{% endblock %}

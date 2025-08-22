@@ -1,0 +1,40 @@
+<!-- templates/teachers/teacher_detail.html -->
+{% extends "base.html" %}
+
+{% block title %}تفاصيل المعلم{% endblock %}
+
+{% block content %}
+<div class="card shadow-sm">
+    <div class="card-header bg-primary text-white">
+        <h2 class="mb-0">تفاصيل المعلم: {{ teacher.f_name }} {{ teacher.l_name }}</h2>
+    </div>
+    <div class="card-body">
+        <dl class="row">
+            <dt class="col-sm-3">الاسم الأول:</dt>
+            <dd class="col-sm-9">{{ teacher.f_name }}</dd>
+
+            <dt class="col-sm-3">اسم العائلة:</dt>
+            <dd class="col-sm-9">{{ teacher.l_name }}</dd>
+
+            <dt class="col-sm-3">العمر:</dt>
+            <dd class="col-sm-9">{{ teacher.age }}</dd>
+
+            <dt class="col-sm-3">المادة:</dt>
+            <dd class="col-sm-9">{{ teacher.subject }}</dd>
+
+            <dt class="col-sm-3">سنوات الخبرة:</dt>
+            <dd class="col-sm-9">{{ teacher.years_of_experience }}</dd>
+
+            <dt class="col-sm-3">الحالة:</dt>
+            <dd class="col-sm-9">
+                {% if teacher.is_active %}<span class="badge bg-success">نشط</span>{% else %}<span class="badge bg-danger">غير نشط</span>{% endif %}
+            </dd>
+        </dl>
+    </div>
+    <div class="card-footer text-center">
+        <a href="{% url 'edit_teacher' teacher.pk %}" class="btn btn-warning me-2"><i class="fas fa-edit me-1"></i> تعديل المعلم</a>
+        <a href="{% url 'delete_teacher' teacher.pk %}" class="btn btn-danger me-2"><i class="fas fa-trash-alt me-1"></i> حذف المعلم</a>
+        <a href="{% url 'teacher_list' %}" class="btn btn-secondary"><i class="fas fa-arrow-left me-1"></i> العودة إلى قائمة المعلمين</a>
+    </div>
+</div>
+{% endblock %}
